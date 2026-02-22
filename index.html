@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+        --color-clifford: #da373d;
+      }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <title>Job Application Tracker</title>
+    <style>
+        * {
+            font-family: 'Geist', sans-serif;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Header Card -->
+    <header id="tracker-header" class="bg-base-200 py-6">
+        <div class="max-w-5xl mx-auto px-4">
+            <h1 id="tracker-title" class="text-2xl font-extrabold text-neutral mb-4">Job Application Tracker</h1>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div id="card-total" class="card bg-base-100 p-4 rounded-lg shadow-sm">
+                    <div class="text-sm text-gray-500">Total</div>
+                    <div id="total-count" class="text-2xl font-bold text-neutral mt-1"><span
+                            id="total-count-value">8</span></div>
+                </div>
+                <div id="card-interview" class="card bg-green-300 p-4 rounded-lg shadow-sm">
+                    <div class="text-sm text-black">Interview</div>
+                    <div id="interview-count" class="text-2xl font-bold text-black mt-1"><span
+                            id="interview-count-value">0</span></div>
+                </div>
+                <div id="card-rejected" class="card bg-red-300 p-4 rounded-lg shadow-sm">
+                    <div class="text-sm text-black">Rejected</div>
+                    <div id="rejected-count" class="text-2xl font-bold text-black mt-1"><span
+                            id="rejected-count-value">0</span></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Job Section -->
+    <section id="available-jobs" class="max-w-5xl mx-auto px-4 py-6">
+        <div class="flex items-center justify-between mb-4">
+            <h2 id="available-jobs-title" class="text-lg font-semibold">Available Jobs</h2>
+            <div id="jobs-count" class="text-sm text-gray-500"><span id="total-count-value">8</span> jobs</div>
+        </div>
+        <div class="flex items-center gap-3 mb-6">
+            <button id="filter-all" onclick="setActiveButton('filter-all')" class="btn btn-primary btn-sm">All</button>
+            <button id="filter-interview" onclick="setActiveButton('filter-interview')"
+                class="btn btn-outline btn-sm">Interview</button>
+            <button id="filter-rejected" onclick="setActiveButton('filter-rejected')"
+                class="btn btn-outline btn-sm">Rejected</button>
+        </div>
+
+      
+</body>
+
+</html>
