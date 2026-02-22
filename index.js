@@ -1,4 +1,28 @@
 
+// Update total count with actual number of jobs
+const totalCountValue = document.getElementById('total-count-value');
+const jobList = document.getElementById('jobs-container').childElementCount;
+totalCountValue.textContent = jobList;
+
+
+
+// Consts for buttons 
+
+const deleteBtns = document.querySelectorAll('[id="delete-btn"]');
+const interviewBtns = document.querySelectorAll('[id="interview-btn"]');
+const rejectedBtns = document.querySelectorAll('[id="rejected-btn"]');
+
+
+// Const for filter buttons
+const filterAllBtn = document.getElementById('filter-all');
+const filterInterviewBtn = document.getElementById('filter-interview');
+const filterRejectedBtn = document.getElementById('filter-rejected');
+
+//Retrive information from job-card
+
+
+
+
 
 //  clicked button's Effect
 function setActiveButton(id) {
