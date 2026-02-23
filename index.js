@@ -21,6 +21,8 @@ const rejectedCountValue = document.getElementById('rejected-count-value');
 
 
 
+
+
 // Retrive information from job-card
 const maincontainer = document.getElementById('jobs-container');
 const container = document.getElementById('filtered_section_interview');
@@ -45,7 +47,7 @@ function updateScreen_Interview(jobData) {
     
     container.innerHTML = "";
 
-    console.log('updateScreen_interview data:', jobData);
+   
 
     // If no jobs, show empty state
     if (jobData.length === 0) {
@@ -90,7 +92,7 @@ function updateScreen_Rejected(jobData) {
     
     containerRejected.innerHTML = "";
 
-    console.log('updateScreen_rejected data:', jobData);
+    
 
     // If no jobs, show empty state
     if (jobData.length === 0) {
@@ -138,6 +140,46 @@ document.addEventListener('click', function (event) {
     const btn = event.target.closest('button');
     if (!btn) return;
 
+    // ===== DELETE BUTTON CLICKED =====
+    if (btn.id === 'delete-btn') {
+        const jobCard = btn.closest('.job-card');
+        if (!jobCard) return;
+
+        const companyName = jobCard.querySelector('.company-name').innerText;
+
+        // Remove from interview array if exists
+        for (let i = 0; i < interviewCount.length; i++) {
+            if (interviewCount[i].jobCompany === companyName) {
+                interviewCount.splice(i, 1);
+                break;
+            }
+        }
+
+        // Remove from rejected array if exists
+        for (let i = 0; i < rejectedCount.length; i++) {
+            if (rejectedCount[i].jobCompany === companyName) {
+                rejectedCount.splice(i, 1);
+                break;
+            }
+        }
+
+        // Update header counters
+        interviewCountValue.textContent = interviewCount.length;
+        rejectedCountValue.textContent = rejectedCount.length;
+
+        // Remove the card from DOM
+        jobCard.remove();
+
+        // Update filtered views
+        updateScreen_Interview(interviewCount);
+        updateScreen_Rejected(rejectedCount);
+
+        // Update job count display
+        const jobsCountElement = document.getElementById('jobs-count');
+        const totalJobs = document.getElementById('jobs-container').childElementCount;
+        jobsCountElement.innerHTML = '<span id="total-count-value">' + totalJobs + '</span> jobs';
+    }
+
     
     // =====  INTERVIEW BUTTON CLICKED =====
 
@@ -154,7 +196,7 @@ document.addEventListener('click', function (event) {
         const jobstatus = jobCard.querySelector('.job-status').innerText;
         const job_container = maincontainer.querySelector('.job-card').innerText;
 
-        console.log('job_container:', job_container);
+       
 
        
         const jobInfo = {
@@ -188,6 +230,8 @@ document.addEventListener('click', function (event) {
 
         interviewCountValue.textContent = interviewCount.length;
         rejectedCountValue.textContent = rejectedCount.length;
+
+
 
         // Update the job card in the main "All" section
         const mainJobCards = maincontainer.querySelectorAll('.job-card');
@@ -273,6 +317,8 @@ document.addEventListener('click', function (event) {
 
 //  clicked button's Effect
 function setActiveButton(id) {
+    const jobsCountElement = document.getElementById('jobs-count');
+    
     if (id === 'filter-all') {
         // Set All to primary (blue)
         filterAllBtn.classList.remove('btn-outline');
@@ -285,6 +331,10 @@ function setActiveButton(id) {
         document.getElementById('filtered_section_interview').style.display = 'none';
         document.getElementById('filtered_section_rejected').style.display = 'none';
         document.getElementById('jobs-container').style.display = 'block';
+        
+        // Update job count to total
+        const totalJobs = document.getElementById('jobs-container').childElementCount;
+        jobsCountElement.innerHTML = '<span id="total-count-value">' + totalJobs + '</span> jobs';
     }
     else if (id === 'filter-interview') {
         // Set Interview to primary (blue)
@@ -300,6 +350,10 @@ function setActiveButton(id) {
         document.getElementById('filtered_section_rejected').style.display = 'none';
         document.getElementById('jobs-container').style.display = 'none';
         updateScreen_Interview(interviewCount);
+        
+        // Update job count to interview count
+        const count = interviewCount.length;
+        jobsCountElement.innerHTML = count + ' out of 8 jobs';
     }
     else if (id === 'filter-rejected') {
         // Set Rejected to primary (blue)
@@ -315,5 +369,9 @@ function setActiveButton(id) {
         document.getElementById('filtered_section_interview').style.display = 'none';
         document.getElementById('jobs-container').style.display = 'none';
         updateScreen_Rejected(rejectedCount);
+        
+        // Update job count to rejected count
+        const count = rejectedCount.length;
+        jobsCountElement.innerHTML = count + ' out of 8 jobs';
     }
 }
