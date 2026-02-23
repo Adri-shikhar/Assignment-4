@@ -7,78 +7,131 @@ totalCountValue.textContent = jobList;
 
 
 
-// Consts for buttons 
-
-const deleteBtns = document.querySelector('[id="delete-btn"]');
-const interviewBtns = document.querySelector('[id="interview-btn"]');
-const rejectedBtns = document.querySelectorAll('[id="rejected-btn"]');
-
-
 // Const for filter buttons
 const filterAllBtn = document.getElementById('filter-all');
 const filterInterviewBtn = document.getElementById('filter-interview');
 const filterRejectedBtn = document.getElementById('filter-rejected');
 
+
+
+
+// Header counters (cached once)
+const interviewCountValue = document.getElementById('interview-count-value');
+const rejectedCountValue = document.getElementById('rejected-count-value');
+
+
+
 // Retrive information from job-card
 const maincontainer = document.getElementById('jobs-container');
+// Container used by updateScreen to show filtered results
+const container = document.getElementById('filtered_section');
 
 
-// Interview button click event
-maincontainer.addEventListener('click', function (event) {
-    if (event.target.id === 'interview-btn') {
-        const parentnode = event.target.closest('.job-card');
-        const jobcompany = parentnode.querySelector('.company-name').innerText;
-        const jobTitle = parentnode.querySelector('.job-title').innerText;
-        const joblocation = parentnode.querySelector('.job-location').innerText;
-        const jobdescription = parentnode.querySelector('.job-description').innerText;
-        const jobstatus = parentnode.querySelector('.job-status').innerText;
 
+
+// ===== Function to show filtered jobs on screen =====
+
+
+
+document.addEventListener('click', function (event) {
+    
+    const btn = event.target.closest('button');
+    if (!btn) return;
+
+    
+    // =====  INTERVIEW BUTTON CLICKED =====
+
+    if (btn.id === 'interview-btn') {
+        
+        const jobCard = btn.closest('.job-card');
+        if (!jobCard) return;
+
+        
+        const companyName = jobCard.querySelector('.company-name').innerText;
+        const title = jobCard.querySelector('.job-title').innerText;
+        const location = jobCard.querySelector('.job-location').innerText;
+        const description = jobCard.querySelector('.job-description').innerText;
+
+       
         const jobInfo = {
-            jobCompany: jobcompany,
-            jobTitle: jobTitle,
-            joblocation: joblocation,
-            jobdescription: jobdescription,
-            jobstatus: jobstatus
+            jobCompany: companyName,
+            jobTitle: title,
+            joblocation: location,
+            jobdescription: description,
+            jobstatus: 'Interview'
         };
 
+        for (let i = 0; i < rejectedCount.length; i++) {
+            if (rejectedCount[i].jobCompany === companyName) {
+                rejectedCount.splice(i, 1); 
+                break; 
+            }
+        }
 
-        const interviewexist = interviewCount.find(job => job.jobCompany === jobInfo.jobCompany);
-        if (!interviewexist) {
+        
+        let alreadyInInterview = false;
+        for (let i = 0; i < interviewCount.length; i++) {
+            if (interviewCount[i].jobCompany === companyName) {
+                alreadyInInterview = true;
+                break;
+            }
+        }
+        if (!alreadyInInterview) {
             interviewCount.push(jobInfo);
         }
-        console.log(interviewCount);
-        parentnode.querySelector('.job-status').innerText = 'Interview';
-        
+
+        updateScreen(interviewCount);
+        interviewCountValue.textContent = interviewCount.length;
+        rejectedCountValue.textContent = rejectedCount.length;
     }
-});
 
-// Rejected button click event
-maincontainer.addEventListener('click', function (event) {
-    if (event.target.id === 'rejected-btn') {
-        const parentnode = event.target.closest('.job-card');
-        const jobcompany = parentnode.querySelector('.company-name').innerText;
-        const jobTitle = parentnode.querySelector('.job-title').innerText;
-        const joblocation = parentnode.querySelector('.job-location').innerText;
-        const jobdescription = parentnode.querySelector('.job-description').innerText;
-        const jobstatus = parentnode.querySelector('.job-status').innerText;
+    // ===== REJECTED BUTTON CLICKED =====
+    if (btn.id === 'rejected-btn') {
+      
+        const jobCard = btn.closest('.job-card');
+        if (!jobCard) return;
 
+        const companyName = jobCard.querySelector('.company-name').innerText;
+        const title = jobCard.querySelector('.job-title').innerText;
+        const location = jobCard.querySelector('.job-location').innerText;
+        const description = jobCard.querySelector('.job-description').innerText;
+
+       
         const jobInfo = {
-            jobCompany: jobcompany,
-            jobTitle: jobTitle,
-            joblocation: joblocation,
-            jobdescription: jobdescription,
-            jobstatus: jobstatus
+            jobCompany: companyName,
+            jobTitle: title,
+            joblocation: location,
+            jobdescription: description,
+            jobstatus: 'Rejected'
         };
 
+        for (let i = 0; i < interviewCount.length; i++) {
+            if (interviewCount[i].jobCompany === companyName) {
+                interviewCount.splice(i, 1);
+                break; 
+            }
+        }
 
-        const rejectedexist = rejectedCount.find(job => job.jobCompany === jobInfo.jobCompany);
-        if (!rejectedexist) {
+        let alreadyInRejected = false;
+        for (let i = 0; i < rejectedCount.length; i++) {
+            if (rejectedCount[i].jobCompany === companyName) {
+                alreadyInRejected = true;
+                break;
+            }
+        }
+        if (!alreadyInRejected) {
             rejectedCount.push(jobInfo);
         }
-        console.log(rejectedCount);
-        parentnode.querySelector('.job-status').innerText = 'Rejected';
+
+        updateScreen(rejectedCount);
+        rejectedCountValue.textContent = rejectedCount.length;
+        interviewCountValue.textContent = interviewCount.length;
     }
 });
+
+
+
+
 
 //  clicked button's Effect
 function setActiveButton(id) {
@@ -91,6 +144,8 @@ function setActiveButton(id) {
         filterInterviewBtn.classList.add('btn-outline');
         filterRejectedBtn.classList.remove('btn-primary');
         filterRejectedBtn.classList.add('btn-outline');
+        document.getElementById('filtered_section').style.display = 'none';
+        document.getElementById('jobs-container').style.display = 'block';
     }
     else if (id === 'filter-interview') {
         // Set Interview to primary (blue)
@@ -101,6 +156,9 @@ function setActiveButton(id) {
         filterAllBtn.classList.add('btn-outline');
         filterRejectedBtn.classList.remove('btn-primary');
         filterRejectedBtn.classList.add('btn-outline');
+        document.getElementById('filtered_section').style.display = 'block';
+        document.getElementById('jobs-container').style.display = 'none';
+
     }
     else if (id === 'filter-rejected') {
         // Set Rejected to primary (blue)
