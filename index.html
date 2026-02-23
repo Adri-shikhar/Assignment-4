@@ -60,31 +60,195 @@
             <button id="filter-rejected" onclick="setActiveButton('filter-rejected')"
                 class="btn btn-outline btn-sm">Rejected</button>
         </div>
+        <section id="filtered_section">
 
+        </section>
         <!-- Job Cards Container -->
         <div id="jobs-container" class="space-y-4">
 
             <!-- Job Card 1 -->
             <div class="job-card bg-base-100 rounded-lg shadow p-6 relative" data-status="not-applied">
-                <button id="delete-btn" class="absolute top-4 right-4 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                <button id="delete-btn"
+                    class="absolute top-4 right-4 p-2 rounded-lg hover:bg-gray-100 transition-colors">
                     <img src="assets/delete.png" alt="Delete" class="h-5 w-5">
                 </button>
-                <h3 class="text-lg font-bold text-neutral">Mobile First Corp</h3>
-                <p class="text-sm text-gray-600">React Native Developer</p>
-                <p class="text-xs text-gray-500 mt-1">Remote • Full-time • $130,000 - $175,000</p>
+                <h3 class="company-name text-lg font-bold text-neutral">Mobile First Corp</h3>
+                <p class="job-title text-sm text-gray-600">React Native Developer</p>
+                <p class="job-location text-xs text-gray-500 mt-1">Remote • Full-time • $130,000 - $175,000</p>
                 <div class="mt-3">
-                    <span class="badge badge-outline text-blue-600 border-blue-600 text-xs">NOT APPLIED</span>
+                    <span class="job-status badge badge-outline text-blue-600 border-blue-600 text-xs">NOT APPLIED</span>
                 </div>
-                <p class="text-sm text-gray-700 mt-3">Build cross-platform mobile applications using React Native. Work
+                <p class="job-description text-sm text-gray-700 mt-3">Build cross-platform mobile applications using
+                    React Native. Work
                     on products used by millions of users worldwide.</p>
                 <div class="flex gap-2 mt-4">
                     <button id="interview-btn"
                         class="btn btn-sm btn-outline border-green-500 text-green-600 hover:bg-green-50">INTERVIEW</button>
-                    <button id="rejected-btn" class="btn btn-sm btn-outline border-red-500 text-red-600 hover:bg-red-50">REJECTED</button>
+                    <button id="rejected-btn"
+                        class="btn btn-sm btn-outline border-red-500 text-red-600 hover:bg-red-50">REJECTED</button>
                 </div>
             </div>
 
-            
+            <!-- Job Card 2 -->
+            <div class="job-card bg-base-100 rounded-lg shadow p-6 relative" data-status="not-applied">
+                <button id="delete-btn"
+                    class="absolute top-4 right-4 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <img src="assets/delete.png" alt="Delete" class="h-5 w-5">
+                </button>
+                <h3 class="company-name text-lg font-bold text-neutral">WebFlow Agency</h3>
+                <p class="job-title text-sm text-gray-600">Web Designer & Developer</p>
+                <p class="job-location text-xs text-gray-500 mt-1">Los Angeles, CA • Part-time • $80,000 - $120,000</p>
+                <div class="mt-3">
+                    <span class="job-status badge badge-outline text-blue-600 border-blue-600 text-xs">NOT APPLIED</span>
+                </div>
+                <p class="job-description text-sm text-gray-700 mt-3">Create stunning web experiences for high-profile
+                    clients. Must
+                    have portfolio and experience with modern web design trends.</p>
+                <div class="flex gap-2 mt-4">
+                    <button id="interview-btn"
+                        class="btn btn-sm btn-outline border-green-500 text-green-600 hover:bg-green-50">INTERVIEW</button>
+                    <button id="rejected-btn"
+                        class="btn btn-sm btn-outline border-red-500 text-red-600 hover:bg-red-50">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- Job Card 3 -->
+            <div class="job-card bg-base-100 rounded-lg shadow p-6 relative" data-status="not-applied">
+                <button id="delete-btn"
+                    class="absolute top-4 right-4 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <img src="assets/delete.png" alt="Delete" class="h-5 w-5">
+                </button>
+                <h3 class="company-name text-lg font-bold text-neutral">CloudScale Solutions</h3>
+                <p class="job-title text-sm text-gray-600">DevOps Engineer</p>
+                <p class="job-location text-xs text-gray-500 mt-1">Remote • Full-time • $140,000 - $180,000</p>
+                <div class="mt-3">
+                    <span class="job-status badge badge-outline text-blue-600 border-blue-600 text-xs">NOT APPLIED</span>
+                </div>
+                <p class="job-description text-sm text-gray-700 mt-3">Manage cloud infrastructure and CI/CD pipelines.
+                    AWS and
+                    Kubernetes experience preferred.</p>
+                <div class="flex gap-2 mt-4">
+                    <button id="interview-btn"
+                        class="btn btn-sm btn-outline border-green-500 text-green-600 hover:bg-green-50">INTERVIEW</button>
+                    <button id="rejected-btn"
+                        class="btn btn-sm btn-outline border-red-500 text-red-600 hover:bg-red-50">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- Job Card 4 -->
+            <div class="job-card bg-base-100 rounded-lg shadow p-6 relative" data-status="not-applied">
+                <button id="delete-btn"
+                    class="absolute top-4 right-4 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <img src="assets/delete.png" alt="Delete" class="h-5 w-5">
+                </button>
+                <h3 class="company-name text-lg font-bold text-neutral">DataViz Analytics</h3>
+                <p class="job-title text-sm text-gray-600">Frontend Developer</p>
+                <p class="job-location text-xs text-gray-500 mt-1">On-site • Full-time • $110,000 - $145,000</p>
+                <div class="mt-3">
+                    <span class="job-status badge badge-outline text-blue-600 border-blue-600 text-xs">NOT APPLIED</span>
+                </div>
+                <p class="job-description text-sm text-gray-700 mt-3">Create stunning data visualizations and
+                    interactive dashboards
+                    using React and D3.js.</p>
+                <div class="flex gap-2 mt-4">
+                    <button id="interview-btn"
+                        class="btn btn-sm btn-outline border-green-500 text-green-600 hover:bg-green-50">INTERVIEW</button>
+                    <button id="rejected-btn"
+                        class="btn btn-sm btn-outline border-red-500 text-red-600 hover:bg-red-50">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- Job Card 5 -->
+            <div class="job-card bg-base-100 rounded-lg shadow p-6 relative" data-status="not-applied">
+                <button id="delete-btn"
+                    class="absolute top-4 right-4 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <img src="assets/delete.png" alt="Delete" class="h-5 w-5">
+                </button>
+                <h3 class="company-name text-lg font-bold text-neutral">Secure Systems Ltd</h3>
+                <p class="job-title text-sm text-gray-600">Cybersecurity Specialist</p>
+                <p class="job-location text-xs text-gray-500 mt-1">Hybrid • Full-time • $135,000 - $170,000</p>
+                <div class="mt-3">
+                    <span class="job-status badge badge-outline text-blue-600 border-blue-600 text-xs">NOT APPLIED</span>
+                </div>
+                <p class="job-description text-sm text-gray-700 mt-3">Protect our systems and data from security
+                    threats. CISSP
+                    certification is a plus.</p>
+                <div class="flex gap-2 mt-4">
+                    <button id="interview-btn"
+                        class="btn btn-sm btn-outline border-green-500 text-green-600 hover:bg-green-50">INTERVIEW</button>
+                    <button id="rejected-btn"
+                        class="btn btn-sm btn-outline border-red-500 text-red-600 hover:bg-red-50">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- Job Card 6 -->
+            <div class="job-card bg-base-100 rounded-lg shadow p-6 relative" data-status="not-applied">
+                <button id="delete-btn"
+                    class="absolute top-4 right-4 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <img src="assets/delete.png" alt="Delete" class="h-5 w-5">
+                </button>
+                <h3 class="company-name text-lg font-bold text-neutral">AI Research Labs</h3>
+                <p class="job-title text-sm text-gray-600">Machine Learning Engineer</p>
+                <p class="job-location text-xs text-gray-500 mt-1">Remote • Full-time • $150,000 - $200,000</p>
+                <div class="mt-3">
+                    <span class="job-status badge badge-outline text-blue-600 border-blue-600 text-xs">NOT APPLIED</span>
+                </div>
+                <p class="job-description text-sm text-gray-700 mt-3">Develop cutting-edge AI models and deploy them at
+                    scale. PhD in
+                    Computer Science preferred.</p>
+                <div class="flex gap-2 mt-4">
+                    <button id="interview-btn"
+                        class="btn btn-sm btn-outline border-green-500 text-green-600 hover:bg-green-50">INTERVIEW</button>
+                    <button id="rejected-btn"
+                        class="btn btn-sm btn-outline border-red-500 text-red-600 hover:bg-red-50">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- Job Card 7 -->
+            <div class="job-card bg-base-100 rounded-lg shadow p-6 relative" data-status="not-applied">
+                <button id="delete-btn"
+                    class="absolute top-4 right-4 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <img src="assets/delete.png" alt="Delete" class="h-5 w-5">
+                </button>
+                <h3 class="company-name text-lg font-bold text-neutral">Digital Marketing Pro</h3>
+                <p class="job-title text-sm text-gray-600">Product Manager</p>
+                <p class="job-location text-xs text-gray-500 mt-1">Hybrid • Full-time • $125,000 - $165,000</p>
+                <div class="mt-3">
+                    <span class="job-status badge badge-outline text-blue-600 border-blue-600 text-xs">NOT APPLIED</span>
+                </div>
+                <p class="job-description text-sm text-gray-700 mt-3">Lead product development from concept to launch.
+                    Strong
+                    communication and leadership skills required.</p>
+                <div class="flex gap-2 mt-4">
+                    <button id="interview-btn"
+                        class="btn btn-sm btn-outline border-green-500 text-green-600 hover:bg-green-50">INTERVIEW</button>
+                    <button id="rejected-btn"
+                        class="btn btn-sm btn-outline border-red-500 text-red-600 hover:bg-red-50">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- Job Card 8 -->
+            <div class="job-card bg-base-100 rounded-lg shadow p-6 relative" data-status="not-applied">
+                <button id="delete-btn"
+                    class="absolute top-4 right-4 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <img src="assets/delete.png" alt="Delete" class="h-5 w-5">
+                </button>
+                <h3 class="company-name text-lg font-bold text-neutral">FinTech Global</h3>
+                <p class="job-title text-sm text-gray-600">Backend Engineer</p>
+                <p class="job-location text-xs text-gray-500 mt-1">Remote • Full-time • $115,000 - $155,000</p>
+                <div class="mt-3">
+                    <span class="job-status badge badge-outline text-blue-600 border-blue-600 text-xs">NOT APPLIED</span>
+                </div>
+                <p class="job-description text-sm text-gray-700 mt-3">Build robust APIs and microservices for our
+                    financial platform.
+                    Experience with Python and Django required.</p>
+                <div class="flex gap-2 mt-4">
+                    <button id="interview-btn"
+                        class="btn btn-sm btn-outline border-green-500 text-green-600 hover:bg-green-50">INTERVIEW</button>
+                    <button id="rejected-btn"
+                        class="btn btn-sm btn-outline border-red-500 text-red-600 hover:bg-red-50">REJECTED</button>
+                </div>
+            </div>
 
         </div>
     </section>
