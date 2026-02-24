@@ -190,6 +190,7 @@ document.addEventListener('click', function (event) {
         }
 
         updateScreen_Interview(interviewCount);
+        updateScreen_Rejected(rejectedCount);
 
         interviewCountValue.textContent = interviewCount.length;
         rejectedCountValue.textContent = rejectedCount.length;
@@ -254,6 +255,8 @@ document.addEventListener('click', function (event) {
         }
 
         updateScreen_Rejected(rejectedCount);
+        updateScreen_Interview(interviewCount);
+
         rejectedCountValue.textContent = rejectedCount.length;
         interviewCountValue.textContent = interviewCount.length;
 
