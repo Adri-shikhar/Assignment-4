@@ -140,45 +140,7 @@ document.addEventListener('click', function (event) {
     const btn = event.target.closest('button');
     if (!btn) return;
 
-    // ===== DELETE BUTTON CLICKED =====
-    if (btn.id === 'delete-btn') {
-        const jobCard = btn.closest('.job-card');
-        if (!jobCard) return;
-
-        const companyName = jobCard.querySelector('.company-name').innerText;
-
-        // Remove from interview array if exists
-        for (let i = 0; i < interviewCount.length; i++) {
-            if (interviewCount[i].jobCompany === companyName) {
-                interviewCount.splice(i, 1);
-                break;
-            }
-        }
-
-        // Remove from rejected array if exists
-        for (let i = 0; i < rejectedCount.length; i++) {
-            if (rejectedCount[i].jobCompany === companyName) {
-                rejectedCount.splice(i, 1);
-                break;
-            }
-        }
-
-        // Update header counters
-        interviewCountValue.textContent = interviewCount.length;
-        rejectedCountValue.textContent = rejectedCount.length;
-
-        // Remove the card from DOM
-        jobCard.remove();
-
-        // Update filtered views
-        updateScreen_Interview(interviewCount);
-        updateScreen_Rejected(rejectedCount);
-
-        // Update job count display
-        const jobsCountElement = document.getElementById('jobs-count');
-        const totalJobs = document.getElementById('jobs-container').childElementCount;
-        jobsCountElement.innerHTML = '<span id="total-count-value">' + totalJobs + '</span> jobs';
-    }
+ 
 
     
     // =====  INTERVIEW BUTTON CLICKED =====
@@ -186,6 +148,7 @@ document.addEventListener('click', function (event) {
     if (btn.id === 'interview-btn') {
         
         const jobCard = btn.closest('.job-card');
+        console.log(jobCard);
         if (!jobCard) return;
 
         
@@ -254,7 +217,8 @@ document.addEventListener('click', function (event) {
     if (btn.id === 'rejected-btn') {
       
         const jobCard = btn.closest('.job-card');
-        if (!jobCard) return;
+        if (!jobCard) 
+            return;
 
         const companyName = jobCard.querySelector('.company-name').innerText;
         const title = jobCard.querySelector('.job-title').innerText;
@@ -308,6 +272,68 @@ document.addEventListener('click', function (event) {
                 card.classList.remove('border-green-500');
             }
         }
+    }
+
+
+       // ===== DELETE BUTTON CLICKED =====
+    if (btn.id === 'delete-btn') {
+        const jobCard = btn.closest('.job-card');
+        
+        if (!jobCard) return;
+
+        const companyName = jobCard.querySelector('.company-name').innerText;
+
+        // Remove from interview array if exists
+        for (let i = 0; i < interviewCount.length; i++) {
+            if (interviewCount[i].jobCompany === companyName) {
+                interviewCount.splice(i, 1);
+                break;
+            }
+        }
+
+        // Remove from rejected array if exists
+        for (let i = 0; i < rejectedCount.length; i++) {
+            if (rejectedCount[i].jobCompany === companyName) {
+                rejectedCount.splice(i, 1);
+                break;
+            }
+        }
+
+        // Get job status and remove borders from all matching cards
+        const jobstatus = jobCard.querySelector('.job-status').innerText;
+        const allJobCards = maincontainer.querySelectorAll('.job-card');
+        
+        for (let i = 0; i < allJobCards.length; i++) {
+            const card = allJobCards[i];
+            const cardCompany = card.querySelector('.company-name').innerText;
+            
+            if (cardCompany === companyName) {
+                if (jobstatus === 'INTERVIEW') {
+                    card.classList.remove('border-l-4', 'border-green-500');
+                }
+                if (jobstatus === 'REJECTED') {
+                    card.classList.remove('border-l-4', 'border-red-500');
+                }
+            }
+        }
+
+       
+        // Update header counters
+        interviewCountValue.textContent = interviewCount.length;
+        rejectedCountValue.textContent = rejectedCount.length;
+
+        // Remove the card from DOM
+        jobCard.remove();
+
+        // Update filtered views
+        updateScreen_Interview(interviewCount);
+        updateScreen_Rejected(rejectedCount);
+
+        // Update job count display and header total count
+        const jobsCountElement = document.getElementById('jobs-count');
+        const totalJobs = document.getElementById('jobs-container').childElementCount;
+        jobsCountElement.innerHTML = '<span id="total-count-value">' + totalJobs + '</span> jobs';
+        totalCountValue.textContent = totalJobs;
     }
 });
 
